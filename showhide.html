@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>showandhide</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+<script>
+$(document).ready(function(){
+  $("#hide1").click(function(){
+    $(".qst1").hide();
+    $(".qst2").show();
+  });
+  $("#show1").click(function(){
+    $(".qst1").show();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#hide2").click(function(){
+    $(".qst2").hide();
+    $(".qst3").show();
+  });
+  $("#show2").click(function(){
+    $(".qst2").show();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#hide3").click(function(){
+    $(".qst3").hide();
+    $(".qst4").show();
+  });
+  $("#show3").click(function(){
+    $(".qst3").show();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#hide4").click(function(){
+    $(".qst4").hide();
+    $(".qst5").show();
+    
+    var checkBox1 = document.getElementById("check1-1");
+  	var checkBox2 = document.getElementById("check1-2");
+  	var checkBox3 = document.getElementById("check1-3");
+  	var checkBox4 = document.getElementById("check1-4");
+  	var checkBox5 = document.getElementById("check2-1");
+  	var checkBox6 = document.getElementById("check2-2");
+  	var checkBox7 = document.getElementById("check2-3");
+  	var checkBox8 = document.getElementById("check3-1");
+  	var checkBox9 = document.getElementById("check3-2");
+  	var checkBox10 = document.getElementById("check3-3");
+  	var checkBox11 = document.getElementById("check4-1");
+  	var checkBox12 = document.getElementById("check4-2");
+  	
+ 	var list = []
+  	// for 반복문
+  	if(checkBox1.checked == true){
+  		// append check1-1가 되었
+  		$("#list").append("<li>근력증가를 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox2.checked == true){
+  		$("#list").append("<li>다이어트를 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox3.checked == true){
+  		$("#list").append("<li>재활치료를 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox4.checked == true){
+  		$("#list").append("<li>체형고정을 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox5.checked == true){
+  		$("#list").append("<li>오전을 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox6.checked == true){
+  		$("#list").append("<li>오후를 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox7.checked == true){
+  		$("#list").append("<li>저녁을 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox8.checked == true){
+  		$("#list").append("<li>10대를 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox9.checked == true){
+  		$("#list").append("<li>20대를 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox10.checked == true){
+  		$("#list").append("<li>30대를 선택하셨습니다.</li>")
+  		
+  	}
+  	if(checkBox11.checked == true){
+  		$("#list").append("<li>성별은 남자입니다.</li>")
+  		
+  	}
+  	if(checkBox12.checked == true){
+  		$("#list").append("<li>성별은 여자입니다.</li>")
+  		
+  	}
+  	
+ 	 });
+  	$("#show4").click(function(){
+    $(".qst4").show();
+	  
+  	});
+	});
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+<body>
+	
+	<div class="qst1">
+		<p>PT를 받는 목적</p>
+	
+		<div class="button-type">
+			<input id="check1-1" type="checkbox" name="근력증가"> 근력증가</br>
+			<input id="check1-2" type="checkbox" name="다이어트"> 다이어트</br>
+			<input id="check1-3" type="checkbox" name="재활치료"> 재활치료</br>
+			<input id="check1-4" type="checkbox" name="체형교정"> 체형교정</br>
+		</div>
+		
+		<div class="button">
+		<button id="show1">이전</button>
+		<button id="hide1">다음</button>
+		</div>
+	</div>
+
+
+	<div class="qst2" style="display: none">
+		<p>PT를 받는 시간대</p>
+	
+		<div class="button-type">
+			<input id="check2-1" type="checkbox" name="오전"> 오전</br>
+			<input id="check2-2" type="checkbox" name="오후"> 오후</br>
+			<input id="check2-3" type="checkbox" name="저녁"> 저녁</br>
+		</div>
+
+		<div class="button2">
+		<button id="show2">이전</button>
+		<button id="hide2">다음</button>
+		</div>
+	</div>
+
+
+
+	<div class="qst3" style="display:none"> 
+		<p>PT를 받을 연령대</p>
+	
+		<div class="button-type">
+			<input id="check3-1" type="checkbox" name="10대"> 10대</br>
+			<input id="check3-2" type="checkbox" name="20대"> 20대</br>
+			<input id="check3-3" type="checkbox" name="30대"> 30대</br>
+		</div>
+
+		<div class="button3">
+		<button id="show3">이전</button>
+		<button id="hide3">다음</button>
+		</div>
+	</div>
+	
+
+	<div class="qst4" style="display:none"> 
+		<p>레슨생 성별</p>
+		<div class="button-type">
+			<input input id="check4-1" type="checkbox" name="남"> 남</br>
+			<input input id="check4-2" type="checkbox" name="여"> 여</br>
+		</div>
+
+		<div class="button4">
+		<button id="show4">이전</button>
+		<button id="hide4">다음</button>
+		</div>
+
+	</div>
+	
+	<div class="qst5" style="display:none">
+		<p>회원님의 정보 확인을 도와드리겠습니다.</p>
+		<div id="list">
+		</div>
+
+
+	 <div>
+
+	
+
+		
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+
+	<title>상품 사진</title>
+	
+
+
+	<meta charset="utf-8">
+	<meta name="viewpoint" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  	 <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+  	 <script type="text/javascript">
+  	 	function isCellPhone(p) {
+        var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
+        return regExp.test(p);
+      }
+
+
+   		function order() {
+        let name = $('#order_name').val();
+        let count = $('#order_count').val();
+        let address = $('#order_address').val();
+        let phone = $('#order_phone').val();
+
+        if (name == ''){
+          alert('이름을 입력해주세요')
+          $('#order_name').focus()
+          return
+        } else if (count == ''){
+          alert('수량을 입력해주세요')
+          $('#order_count').focus()
+          return
+        } else if (address == ''){
+          alert('주소를 입력해주세요')
+          $('#order_address').focus()
+          return
+        } else if (phone == ''){
+          alert('휴대폰번호를 입력해주세요')
+          $('#order_phone').focus()
+          return
+        } else if (!isCellPhone(phone)) {
+          alert('휴대폰번호 입력 형식이 틀립니다. \n 010-0000-0000으로 입력해주세요')
+          return
+        }
+
+        $.ajax({
+          type: "POST",
+          url: "http://spartacodingclub.shop/order",
+          data: { name_give:name, count_give:count, address_give:address, phone_give:phone },
+          success: function(response){
+            if(response['result'] == 'success'){
+              alert('주문 완료!');
+              window.location.reload();
+            }
+          }
+        })
+      }
+
+      $(document).ready(function(){
+        $('#orders-box').html('');
+        listing();
+
+      });
+
+
+      function listing() {
+
+        $.ajax({
+          type: "GET",
+          url: "http://spartacodingclub.shop/order",
+          data: {},
+          success: function(response){
+
+             if (response['result'] == 'success') {
+               let orders = response['orders'];
+               console.log(orders);
+               for (let i = 0; i < orders.length; i++) {
+               	
+                 make_card(orders[i]['name'],orders[i]['count'],orders[i]['address'],orders[i]['phone'])
+  
+             }
+             } else {
+               alert('기사를 받아오지 못했습니다');
+             }
+          }
+        })
+      }
+
+      function make_card(name,count,address,phone) {
+        let temp_html = '<tr>\
+            <td>'+name+'</td>\
+            <td>'+count+'</td>\
+            <td>'+address+'</td>\
+            <td>'+phone+'</td>\
+          </tr>';
+        $('#orders-box').append(temp_html);
+      }
+    </script>
+
+
+
+
+
+	<style>
+	.myclothing {
+		color:white;
+		background-image: url("https://image.thehyundai.com/static/8/0/1/00/A1/hnm40A1001086_01_0608772_004_001_720.jpg");
+		background-size:cover;
+		background-position: center;
+		width:500px;
+		height:500px;
+		border-radius: 10px;
+		text-align:center;
+		margin:0 auto;
+
+		display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        border-bottom:5px ;
+     }
+
+    .myclothingexplanation {
+     	color:black;
+     	text-align: center;
+     	margin:0 auto;
+     	font-size: 17px;
+     	border-bottom:1px solid black;
+     }
+
+    .myclothingtext{
+		font-size:15px;
+     }
+	
+	.orderbutton{
+		font-size: 20px;
+		border: 1px solid skyblue;
+		padding: 5px;
+		border-radius: 5px;
+		margin: auto;
+		width: 30%;
+		text-align:center;
+	}
+    
+    
+    .orderbutton:hover{
+    	color:white;
+    	background-color:skyblue;
+
+		}
+
+	}
+
+	
+
+	</style>
+	
+</head>
+
+
+
+<body>
+	<div class="wrap">
+		 
+      </p>
+	<div class="myclothing">
+		<h1>보일드 울 재킷 </h1>
+	</div>
+
+	<div class="myclothingexplanation">
+		<h1><a href="https://www.cosstores.com/kr_krw/men/most-popular/product.boiled-wool-jacket-midnight-green.0608772004.html?slitmCd=40A1001086">보일드 울 재킷</a></h1> <span>가격: 190,000원</span>
+		<div> 부드러운 보일드 울 혼방 소재로 매끄러운 저지 안감을 덧대어 만들어진 캐주얼한 스타일의 재킷입니다. 
+		</br>스냅 버튼을 채워 착용할 수 있으며, 측면 심 포켓 및 앞면에 숨은 스냅 버튼이 달린 포켓이 있습니다.
+		</div>
+	</div>	
+
+	<div class="myclothingtext">
+
+		<h1>주문하기</h1>
+		주문자 성함:<input type="text" class="form-control" id="order_name">
+		<div class="input-group mb-3">
+    <div class= "input-group-prepend"> 
+    <label class="input-group-text" for="inputGroupSelect01">수량</label>   
+    </div>
+    <select class="custom-select" id="order_count">
+        <option selected value=""> -- 수량을 선택하세요 -- </option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    </div>
+    
+    <div class="input-group mb-3">
+    <div class= "input-group-prepend">
+		<span class="input-group-text" id="basic-addon3">주소</span>
+    </div>
+    <input type="text" class="form-control" id="order_address" aria-describedby="basic-addon3">
+    </div>
+		
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">전화번호</span>
+        </div>
+        <input type="text" class="form-control" id="order_phone" aria-describedby="basic-addon3">
+    </div>
+
+    <div class="order">
+      <button onclick="order()" type="button" class="btn btn-primary">주문하기</button>
+    </div>
+    
+	</div>
+  </div>
+
+		
+		
+
+	<div class="orders">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">이름</th>
+					<th scope="col">수량</th>
+					<th scope="col">주소</th>
+					<th scope="col">전화번호</th>
+				</tr>
+			</thead>
+			<tbody id= "orders-box">
+				<tr>
+			  	<td>Otto</td>
+          <td>@mdo</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+      
+
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+	<!-- ....wrap꺼 -->
+	</div>	
+
+
+
+
+
+</body>
+
+
+</html>
